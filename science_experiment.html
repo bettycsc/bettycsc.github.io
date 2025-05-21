@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节气科学实验 | Solar Term Science Experiments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946', // 热情的红色，代表大暑
+                        secondary: '#1D3557', // 深蓝色，代表霜降
+                        neutral: '#F1FAEE', // 自然白，作为背景
+                        accent: '#A8DADC', // 浅蓝色，作为辅助色
+                        dark: '#457B9D', // 深青色，用于文本
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            }
+            .bg-gradient-solar {
+                background: linear-gradient(135deg, #FF9A56 0%, #FF5E62 100%);
+            }
+            .bg-gradient-frost {
+                background: linear-gradient(135deg, #84D2F6 0%, #507DBC 100%);
+            }
+            .glass-effect {
+                backdrop-filter: blur(10px);
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral min-h-screen font-sans text-dark">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect py-4 px-6 md:px-12 flex justify-between items-center shadow-md">
+            <a href="#" class="flex items-center space-x-3">
+                <i class="fa-solid fa-flask text-primary text-2xl"></i>
+                <span class="font-bold text-xl md:text-2xl text-secondary">节气科学实验 | Solar Term Science</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#great-heat" class="text-dark hover:text-primary transition-colors font-medium">大暑实验</a>
+                <a href="#frost-descent" class="text-dark hover:text-primary transition-colors font-medium">霜降实验</a>
+                <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">首页</a>
+            </nav>
+            <button class="md:hidden text-secondary text-xl" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden glass-effect hidden shadow-lg" id="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#great-heat" class="block text-dark hover:text-primary transition-colors font-medium">大暑实验</a>
+                <a href="#frost-descent" class="block text-dark hover:text-primary transition-colors font-medium">霜降实验</a>
+                <a href="index.html" class="block text-dark hover:text-primary transition-colors font-medium">首页</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 -z-10"></div>
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 text-secondary animate-fade-in leading-tight text-shadow">
+                二十四节气中的<span class="text-primary">科学实验</span><br>
+                <span class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary">Science Experiments in 24 Solar Terms</span>
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] mb-10 text-dark/80 max-w-3xl mx-auto animate-slide-up">
+                探索传统节气与现代科学的奇妙结合，通过实验感受自然现象背后的科学原理<br>
+                Explore the wonderful combination of traditional solar terms and modern science, and experience the scientific principles behind natural phenomena through experiments
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.2s">
+                <a href="#great-heat" class="px-8 py-3 bg-primary text-white rounded-full shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all transform hover:-translate-y-1">
+                    探索大暑实验
+                </a>
+                <a href="#frost-descent" class="px-8 py-3 bg-secondary text-white rounded-full shadow-lg hover:shadow-xl hover:bg-secondary/90 transition-all transform hover:-translate-y-1">
+                    探索霜降实验
+                </a>
+            </div>
+        </div>
+        <!-- 装饰元素 -->
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="absolute -top-10 -left-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"></div>
+    </section>
+
+    <!-- 大暑实验部分 -->
+    <section id="great-heat" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-gradient-solar p-1 rounded-2xl shadow-xl">
+                <div class="bg-white p-6 md:p-8 rounded-xl">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6 text-secondary">大暑与铜的焰色反应<br><span class="text-xl">Great Heat and Flame Color Reaction of Copper</span></h2>
+                    <p class="mb-4 text-dark/80">大暑，正值一年中最为炽热的时节，骄阳似火，大地仿佛被置于巨大的蒸笼之中。此时，来做铜的焰色反应实验，就如同将这酷热推向了极致。<br>
+                    <span class="text-dark/70">Great Heat is the hottest season of the year. The sun is blazing, and the earth seems to be placed in a huge steamer. At this time, conducting the flame color reaction experiment of copper is like pushing this extreme heat to the limit.</span></p>
+                    <p class="mb-6 text-dark/80">当铜在火焰中接受高温的洗礼，瞬间绽放出耀眼的绿光，那绿光恰似大暑时节蓬勃到极致的生命力，在高温的激发下，展现出最为绚烂的色彩，与大暑热烈奔放的氛围相得益彰。<br>
+                    <span class="text-dark/70">When copper is baptized by high temperature in the flame, it instantly blooms with dazzling green light. This green light is just like the vigorous vitality in the season of Great Heat. Under the excitation of high temperature, it shows the most gorgeous color, complementing the enthusiastic and unrestrained atmosphere of Great Heat.</span></p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary">实验目的<br><span class="text-lg font-normal">Experiment Purpose</span></h3>
+                        <p class="text-dark/80">证明铜在火焰中产生绿色，是物理变化。<br>
+                        <span class="text-dark/70">To prove that the green color produced by copper in the flame is a physical change.</span></p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary">实验原理<br><span class="text-lg font-normal">Experiment Principle</span></h3>
+                        <p class="text-dark/80">在高温中，铜的电子以热能的形式吸收能量，跃迁更高等级的轨道。随后又以光能的形式放出能量，回到原来轨道。由于铜的电子轨道间距的特定，光的波长正好是绿色光的波长，由此产生了绿色的可见光。<br>
+                        <span class="text-dark/70">At high temperatures, copper electrons absorb energy in the form of heat and jump to higher energy levels. They then release this energy as light and return to their original orbits. Due to the specific spacing of copper's electron orbits, the wavelength of the emitted light corresponds to green light, resulting in the observed green flame.</span></p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary">实验器材<br><span class="text-lg font-normal">Experiment Equipment</span></h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">铜 Copper</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">酒精灯 Alcohol Lamp</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">蓝色钴玻璃 Blue Cobalt Glass</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">物理天平 Physical Balance</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">砂纸 Sandpaper</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary">实验步骤<br><span class="text-lg font-normal">Experiment Procedures</span></h3>
+                        <ol class="list-decimal pl-5 space-y-2 text-dark/80">
+                            <li>用砂纸打磨掉铜表面的氧化层，并对铜进行称量<br>
+                            Polish the copper surface with sandpaper to remove the oxide layer, and weigh the copper</li>
+                            <li>用酒精灯对铜进行加热。<br>
+                            Heat the copper with an alcohol lamp.</li>
+                            <li>用蓝色鼓玻璃观察铜在被加热的过程中产生的绿色火焰<br>
+                            Observe the green flame produced by the copper during heating through blue cobalt glass</li>
+                            <li>查询资料对比同的发射光谱与观察到的光的颜色是否对应<br>
+                            Compare the emission spectrum of copper with the observed color through reference materials</li>
+                            <li>称量加热过的铜，比较加热前后的质量是否有变化<br>
+                            Weigh the heated copper and compare its mass before and after heating</li>
+                        </ol>
+                    </div>
+                    
+                    <p class="text-dark/80">实验配图自行脑补<br><span class="text-dark/70">Imagine the experiment illustration by yourself</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 霜降实验部分 -->
+    <section id="frost-descent" class="py-20 px-6 md:px-12 bg-gradient-to-b from-neutral to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-gradient-frost p-1 rounded-2xl shadow-xl">
+                <div class="bg-white p-6 md:p-8 rounded-xl">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6 text-secondary">霜降与水的凝华实验<br><span class="text-xl">Frost's Descent and Sublimation of Water</span></h2>
+                    <p class="mb-4 text-dark/80">霜降，预示着天气渐冷，初霜降临。此时进行水的凝华实验，仿佛是在复刻大自然的神奇变化。<br>
+                    <span class="text-dark/70">Frost's Descent signals the gradual cooling of the weather and the arrival of the first frost. Conducting the sublimation experiment of water at this time seems to replicate the magical changes of nature.</span></p>
+                    <p class="mb-6 text-dark/80">在特定的环境下，水跳过液态，直接转变为固态的冰晶，这与霜降时节空气中的水汽在低温下直接凝结成霜的过程极为相似。那晶莹剔透的冰晶，就像清晨草木上凝结的白霜，见证着霜降节气带来的温度骤降，以及物质形态转变的奇妙瞬间。<br>
+                    <span class="text-dark/70">Under specific conditions, water skips the liquid phase and directly transforms into solid ice crystals, which is very similar to the process by which water vapor in the air directly condenses into frost during Frost's Descent. The crystal-clear ice crystals, like the white frost on plants in the early morning, witness the sudden temperature drop brought by the Frost's Descent solar term and the奇妙 moment of material transformation.</span></p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">实验目的<br><span class="text-lg font-normal">Experiment Purpose</span></h3>
+                        <p class="text-dark/80">观察水的凝华现象，了解气态水如何在低温环境下直接转变为固态冰。<br>
+                        <span class="text-dark/70">To observe the sublimation phenomenon of water and understand how gaseous water directly transforms into solid ice under low-temperature conditions.</span></p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">实验原理<br><span class="text-lg font-normal">Experiment Principle</span></h3>
+                        <p class="text-dark/80">气态水向低温处放出热量，凝华成为固态水。当气态水遇到温度足够低的物体表面时，会直接从气态转变为固态，形成冰晶。<br>
+                        <span class="text-dark/70">Gaseous water releases heat to colder areas and sublimates into solid water. When gaseous water encounters a surface cold enough, it directly transforms from gas to solid, forming ice crystals.</span></p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">实验器材<br><span class="text-lg font-normal">Experiment Equipment</span></h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">固态二氧化碳（干冰） Solid Carbon Dioxide (Dry Ice)</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">试管 Test Tube</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">显微镜 Microscope</span>
+                            <span class="bg-neutral px-3 py-2 rounded-lg text-dark/80">冰水混合物 Ice-Water Mixture</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">实验步骤<br><span class="text-lg font-normal">Experiment Procedures</span></h3>
+                        <ol class="list-decimal pl-5 space-y-2 text-dark/80">
+                            <li>取两只试管，分别放入适量冰水混合物和干冰，置于常温中观察<br>
+                            Place appropriate amounts of ice-water mixture and dry ice in two test tubes respectively, and observe them at room temperature</li>
+                            <li>出现霜和水珠/冰珠后，用显微镜观察结晶<br>
+                            After frost and water droplets/ice beads appear, observe the crystals under a microscope</li>
+                            <li>以确定试管上的冰是由水蒸气直接凝华得来的（由液态水凝固形成的冰与直接由水蒸气凝华形成的冰，晶体结构和形状会有所不同）<br>
+                            To determine that the ice on the test tube is directly sublimated from water vapor (the crystal structure and shape of ice formed by solidification of liquid water are different from those formed by direct sublimation of water vapor)</li>
+                        </ol>
+                    </div>
+                    
+                    <p class="text-dark/80">实验配图自行想象。<br><span class="text-dark/70">Imagine the experiment illustration by yourself.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-secondary text-white py-8 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-white/80">© 2025 节气科学实验 | Solar Term Science Experiments | <a href="index.html" class="text-white hover:underline">返回首页 | Back to Home</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-lg');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (menuToggle.querySelector('i').classList.contains('fa-bars')) {
+                menuToggle.querySelector('i').classList.remove('fa-bars');
+                menuToggle.querySelector('i').classList.add('fa-times');
+            } else {
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 元素进入视口时的动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section > div').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+    
